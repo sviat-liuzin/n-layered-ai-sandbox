@@ -18,7 +18,7 @@
             "serverReadyAction": {
                 "action": "openExternally",
                 "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
-                "uriFormat": "%s/weatherforecast"
+                "uriFormat": "%s/my/map"
             },
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
