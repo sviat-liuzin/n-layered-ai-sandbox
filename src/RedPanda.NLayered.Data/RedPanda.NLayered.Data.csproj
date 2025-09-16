@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RedPanda.NLayered.Domain\RedPanda.NLayered.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

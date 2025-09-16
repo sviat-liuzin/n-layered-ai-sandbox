@@ -1,8 +1,8 @@
 using RedPanda.NLayered.Domain.Map;
 
-namespace RedPanda.NLayered.Domain.Services.Map;
+namespace RedPanda.NLayered.Data.Repositories;
 
-public interface IMapService
+public interface IMapRepository
 {
     Task<MyMap> GetMyMapAsync(CancellationToken cancellationToken = default);
 }

@@ -1,4 +1,5 @@
 using RedPanda.NLayered.Application;
+using RedPanda.NLayered.Data.Sql;
 using ApplicationServiceCollectionExtensions = RedPanda.NLayered.Application.ServiceCollectionExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,8 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddControllers();
 
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddRedPandaNLayeredDataSql(connectionString);
 builder.Services.AddRedPandaNLayeredApplication();
 
 builder.Services.AddAutoMapper(cfg => {}, typeof(ApplicationServiceCollectionExtensions));

@@ -1,11 +1,17 @@
+using EnsureThat;
+using RedPanda.NLayered.Data.Repositories;
+using RedPanda.NLayered.Domain.Map;
+
 namespace RedPanda.NLayered.Domain.Services.Map;
 
-internal class MapService : IMapService
+internal class MapService(IMapRepository mapRepository) : IMapService
 {
-    public Task<MyMap> GetMyMapAsync(CancellationToken cancellationToken = default)
-    {
-        var myMap = new MyMap("blank_forecast");
+    private readonly IMapRepository _mapRepository = Ensure.Any.IsNotNull(mapRepository, nameof(mapRepository));
 
-        return Task.FromResult(myMap);
+    public async Task<MyMap> GetMyMapAsync(CancellationToken cancellationToken = default)
+    {
+        var myMap = await _mapRepository.GetMyMapAsync(cancellationToken);
+
+        return myMap;
     }
 }
