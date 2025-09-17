@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\RedPanda.NLayered.Domain\RedPanda.NLayered.Domain.csproj" />
     <ProjectReference Include="..\RedPanda.NLayered.Domain.Services\RedPanda.NLayered.Domain.Services.csproj" />
+    <ProjectReference Include="..\RedPanda.NLayered.Integration.Forecast.WeatherApi\RedPanda.NLayered.Integration.Forecast.WeatherApi.csproj" />
   </ItemGroup>
 
 </Project>

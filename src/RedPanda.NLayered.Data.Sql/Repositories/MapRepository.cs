@@ -11,10 +11,26 @@ internal class MapRepository(ApplicationDbContext dbContext) : IMapRepository
 
     private DbSet<MyMap> MyMaps => _dbContext.Set<MyMap>();
 
-    public async Task<MyMap> GetMyMapAsync(CancellationToken cancellationToken = default)
+    public async Task<MyMap?> GetMyMapAsync(DateOnly date, CancellationToken cancellationToken = default)
     {
-        var result = await MyMaps.FirstOrDefaultAsync(cancellationToken);
+        var result = await MyMaps.FirstOrDefaultAsync(
+            i => i.Date == date,
+            cancellationToken);
 
         return result;
+    }
+
+    public async Task CreateMyMapAsync(MyMap myMap)
+    {
+        await MyMaps.AddAsync(myMap);
+
+        await dbContext.SaveChangesAsync();
+    }
+
+    public async Task UpdateMyMapAsync(MyMap myMap)
+    {
+        MyMaps.Update(myMap);
+
+        await dbContext.SaveChangesAsync();
     }
 }
