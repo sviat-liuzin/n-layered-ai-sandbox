@@ -1,4 +1,6 @@
-Development tasks
+# This is a sample N-layered web app in .Net written to fine-tune LLMs.
+
+##Development tasks
 
 1. EF Core
 

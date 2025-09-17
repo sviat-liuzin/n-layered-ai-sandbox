@@ -14,7 +14,7 @@ public class MyController(IMapService mapService) : ControllerBase
     [Route("map")]
     public async Task<IActionResult> GetMyMap(CancellationToken cancellationToken)
     {
-        var result = await _mapService.GetMyMapAsync(cancellationToken);
+        var result = await _mapService.UpdateMyMapForTodayAsync(cancellationToken);
 
         return Ok(result);
     }

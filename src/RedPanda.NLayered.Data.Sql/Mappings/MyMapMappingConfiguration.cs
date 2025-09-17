@@ -11,11 +11,19 @@ public class MyMapMappingConfiguration : IEntityTypeConfiguration<MyMap>
         builder.ToTable("MyMaps");
 
         builder
-            .HasKey(i => i.Id);
+            .HasKey(i => new { i.Id, i.Date });
 
         builder
-            .Property(i => i.CurrentForecast)
+            .Property(i => i.Date)
+            .IsRequired();
+
+        builder
+            .Property(i => i.MapData)
             .IsRequired()
             .HasMaxLength(300);
+
+        builder
+            .Property(i => i.LastReportedTemperatureC)
+            .IsRequired(false);
     }
 }

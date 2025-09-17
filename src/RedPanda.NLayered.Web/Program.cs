@@ -1,5 +1,6 @@
 using RedPanda.NLayered.Application;
 using RedPanda.NLayered.Data.Sql;
+using RedPanda.NLayered.Integration.Forecast.WeatherApi;
 using ApplicationServiceCollectionExtensions = RedPanda.NLayered.Application.ServiceCollectionExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +13,9 @@ builder.Services.AddControllers();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddRedPandaNLayeredDataSql(connectionString);
-builder.Services.AddRedPandaNLayeredApplication();
+
+var weatherApiClientOptions = builder.Configuration.GetSection("WeatherApiClient").Get<WeatherApiClientOptions>();
+builder.Services.AddRedPandaNLayeredApplication(weatherApiClientOptions);
 
 builder.Services.AddAutoMapper(cfg => {}, typeof(ApplicationServiceCollectionExtensions));
 
